@@ -195,6 +195,31 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
 .footer-title { color: #FFD700; font-size: 16px; font-weight: 600; }
 
+
+
+
+/* ===== HERO RESPONSIVO mobile ===== */
+@media (max-width: 768px) {
+  .hero-text h1 {
+    font-size: 32px;  /* diminui título no celular */
+  }
+
+  .hero-text p {
+    font-size: 16px;  /* diminui subtítulo no celular */
+  }
+
+  .hero-menu {
+    flex-direction: column;  /* empilha os botões */
+    gap: 10px;               /* espaço entre eles */
+    align-items: center;     /* centraliza horizontalmente */
+  }
+
+  .hero-menu a {
+    padding: 10px 24px;      /* deixa os botões menores e mais proporcionais */
+    font-size: 14px;          /* fonte menor no celular */
+  }
+}
+
 </style>
 </head>
 <body>
