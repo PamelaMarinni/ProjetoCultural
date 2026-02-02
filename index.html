@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oscar Rafael | Portfólio Cultural</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+/* ===== RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; }
+body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B2B2B; }
+
+/* ===== MENU ===== */
+.menu { background: #0F2A44; padding: 15px; text-align: center; position: sticky; top: 0; z-index: 10; }
+.menu a { color: #fff; margin: 0 15px; text-decoration: none; }
+
+/* ===== SEÇÕES ===== */
+.section { padding: 50px 20px; max-width: 900px; margin: 0 auto; }
+
+/* ===== HERO ===== */
+.hero { position: relative; height: 95vh; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero::after { content: ""; position: absolute; inset: 0; background: rgba(15, 42, 68, 0.4); }
+.hero-text { position: relative; z-index: 2; text-align: center; color: #fff; top: 30%; transform: translateY(-30%); }
+.hero-text h1 { font-size: 48px; margin-bottom: 10px; }
+.hero-text p { font-size: 20px; margin-bottom: 20px; }
+.hero-menu { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+.hero-menu a { padding: 12px 30px; background: #0F2A44; color: #fff; text-decoration: none; border-radius: 30px; border: 2px solid #FFD700; transition: all 0.3s ease; }
+.hero-menu a:hover { background: #FFD700; color: #0F2A44; transform: scale(1.05); }
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .hero-text h1 { font-size: 30px; }
+  .hero-text p { font-size: 16px; }
+  .hero-menu a { padding: 10px 24px; font-size: 14px; }
+}
+
+/* ===== SOBRE MIM ===== */
+#sobre { text-align: center; margin-top: 80px; }
+#sobre h2 { color: #ffffff; font-size: 32px; margin-bottom: 20px; }
+.foto-perfil { width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #FFD700; margin-bottom: 20px; }
+#sobre p { color: #ffffff; font-size: 18px; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+
+/* ===== PLATAFORMAS MUSICAIS ===== */
+#plataformas-de-musicas { margin-top: 80px; }
+#plataformas-de-musicas h2 { color: #0F2A44; font-size: 30px; margin-bottom: 30px; text-align: center; animation: pulse 2s infinite; }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+.music-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.music-links li { margin-bottom: 25px; }
+.music-links a { color: #000; text-decoration: none; font-size: 18px; transition: color 0.3s ease; }
+.music-links a:hover { color: #FFD700; }
+
+/* ===== PROJETO CULTURAL ===== */
+.section .slider-wrapper { max-width: 1300px; display: flex; align-items: center; justify-content: center; gap: 20px; margin: 40px auto; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+.slider-wrapper button { width: 52px; height: 52px; background: #0F2A44; color: #FFD700; border: 2px solid #FFD700; border-radius: 10px; font-size: 26px; cursor: pointer; transition: transform 0.2s ease; }
+.slider-wrapper button:hover { transform: scale(1.1); }
+
+.slider { width: 100%; max-width: 1200px; overflow: hidden; }
+.slides { display: flex; transition: transform 0.5s ease-in-out; }
+.slides img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: transparent; flex-shrink: 0; }
+
+#projeto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centraliza horizontalmente */
+  justify-content: center; /* centraliza verticalmente */
+  min-height: 80vh;        /* altura mínima da seção para centralizar */
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* ===== PROJETO CULTURA FONTE ===== */
+#projeto {
+  margin-top: 80px; /* igual ao #plataformas-de-musicas */
+  text-align: center;
+}
+
+#projeto h2 {
+  color: #0F2A44;       /* azul escuro */
+  font-size: 30px;       /* igual ao das plataformas musicais */
+  margin-bottom: 30px;
+  animation: pulse 2s infinite; /* mesma animação */
+}
+
+/* Reaproveita animação pulse já existente */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+
+/* ===== PDF ===== */
+.pdf-button {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.pdf-button a {
+  display: inline-block;
+  padding: 8px 20px;
+  font-size: 16px;
+  background: #0F2A44;
+  color: #fff;
+  border-radius: 25px;
+  border: 2px solid #FFD700;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s infinite; /* pulso e brilho */
+}
+
+.pdf-button a:hover {
+  background: #FFD700;
+  color: #0F2A44;
+  transform: scale(1.1);  /* aumenta um pouco mais no hover */
+}
+
+/* animação pulsante + brilho */
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 5px #FFD700;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px #FFD700;
+    transform: scale(1.1);
+  }
+  100% {
+    text-shadow: 0 0 5px #FFD700;
+    transform: scale(1);
+  }
+}
+
+/* ===== PATROCINAR ===== */
+.titulo-patrocinar { margin-top: 80px; color: #0F2A44; font-size: 26px; text-align: center; }
+.patrocinar-lista { list-style: disc; padding-left: 40px; margin-top: 20px; text-align: left; }
+.patrocinar-lista li { color: #000; font-size: 20px; line-height: 1.8; margin-bottom: 15px; }
+.patrocinar-lista li strong { font-weight: bold; }
+.botao-patrocinar { margin-top: 50px; text-align: center; }
+.botao-patrocinar a { padding: 12px 30px; background: #0F2A44; color: #fff; border-radius: 30px; border: 2px solid #FFD700; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+.botao-patrocinar a:hover { background: #FFD700; color: #0F2A44; transform: scale(1.05); }
+.descricao-projeto { color: #000; font-size: 20px; text-align: center; margin-bottom: 30px; }
+
+/* ===== CONTATO ===== */
+.contato-links { 
+  display: flex; 
+  justify-content: center; 
+  gap: 30px;       /* antes era 50px, agora menor */
+  margin-top: 20px; 
+}
+
+.contato-links span { 
+  font-size: 36px;  /* antes 50px, agora menor */
+  color: #0F2A44; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  animation: pulseGlow 2s infinite; 
+}
+
+.contato-links span:hover { 
+  color: #FFD700; 
+  transform: scale(1.3); 
+}
+
+@keyframes pulseGlow { 
+  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+  50% { text-shadow: 0 0 20px #FFD700; transform: scale(1.2); } 
+  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+}
+
+.contato-box p { 
+  font-size: 32px; 
+  font-weight: 700; 
+  color: #0F2A44; 
+  margin: 40px 0 25px 0; 
+  text-align: center; 
+  animation: pulseText 2s infinite; 
+}
+
+@keyframes pulseText { 
+  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+  50% { text-shadow: 0 0 20px #FFD700; transform: scale(1.1); } 
+  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+}
+
+
+/* ===== FOOTER ===== */
+.footer { background: #0F2A44; padding: 20px 15px; margin-top: 80px; }
+.footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+.footer-title { color: #FFD700; font-size: 16px; font-weight: 600; }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <img src="imagem/hero.jpg" alt="Imagem de fundo" class="hero-img">
+  <div class="hero-text">
+    <h1>Oscar Rafael</h1>
+    <p>Cantor Sertanejo</p>
+    <nav class="hero-menu">
+      <a href="#sobre">SOBRE MIM</a>
+      <a href="#plataformas-de-musicas">PLATAFORMAS MUSICAIS</a>
+      <a href="#projeto">PROJETO CULTURAL</a>
+    </nav>
+  </div>
+</header>
+
+<!-- SOBRE MIM -->
+<section id="sobre" class="section">
+  <h2>SOBRE MIM</h2>
+  <img src="imagem/hero2.jpg" class="foto-perfil">
+  <p>Sou Oscar Rafael, cantor e coordenador geral de projetos culturais aprovados pela Lei Rouanet. A música é a minha ferramenta para gerar impacto social e valorizar a cultura brasileira. Cada projeto que realizo é pensado para conectar pessoas, criar experiências culturais únicas e promover transformação na comunidade.</p>
+</section>
+
+<!-- PLATAFORMAS MUSICAIS -->
+<section id="plataformas-de-musicas" class="section">
+  <h2>PLATAFORMAS MUSICAIS</h2>
+  <ul class="music-links">
+    <li><a href="https://www.youtube.com/@cantoroscarrafael" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube – Canal Oficial</a></li>
+    <li><a href="https://music.amazon.com.br/search/oscar-rafael/albums?filter=IsLibrary%7Cfalse&sc=none" target="_blank"><i class="fa-brands fa-amazon"></i> Amazon Music</a></li>
+    <li><a href="https://www.deezer.com/br/artist/76807272" target="_blank"><i class="fa-brands fa-deezer"></i> Deezer</a></li>
+    <li><a href="https://open.spotify.com/intl-pt/artist/4IHZLUxHaX3JAH0OXlgYJx" target="_blank"><i class="fa-brands fa-spotify"></i> Spotify</a></li>
+  </ul>
+</section>
+
+<!-- PROJETO CULTURAL -->
+<section id="projeto" class="section">
+  <h2 class="pulsando" style="text-align:center; color:#0F2A44;">PROJETO CULTURAL</h2>
+  <p style="text-align:center; color:#000; margin-bottom:30px;">O Som da Felicidade (PRONAC 257865) — projeto aprovado pela Lei Rouanet.</p>
+
+  <!-- SLIDER -->
+  <div class="slider-wrapper">
+    <button class="prev">&#10094;</button>
+    <div class="slider">
+      <div class="slides">
+        <img src="imagem/img1.jpg" alt="Slide 1">
+        <img src="imagem/img2.jpg" alt="Slide 2">
+        <img src="imagem/img3.jpg" alt="Slide 3">
+        <img src="imagem/img4.jpg" alt="Slide 4">
+        <img src="imagem/img5.jpg" alt="Slide 5">
+        <img src="imagem/img6.jpg" alt="Slide 6">
+        <img src="imagem/img7.jpg" alt="Slide 7">
+        <img src="imagem/img8.jpg" alt="Slide 8">
+        <img src="imagem/img9.jpg" alt="Slide 9">
+        <img src="imagem/img10.jpg" alt="Slide 10">
+        <img src="imagem/img11.jpg" alt="Slide 11">
+        <img src="imagem/img12.jpg" alt="Slide 12">
+      </div>
+    </div>
+    <button class="next">&#10095;</button>
+  </div>
+
+  <!-- PDF -->
+  <div class="pdf-button">
+    <a href="pdf/projeto-o-som-da-felicidade.pdf" target="_blank">Visualizar PDF do Projeto</a>
+  </div>
+
+  <!-- PATROCINAR -->
+  <h3 class="titulo-patrocinar">POR QUE PATROCINAR</h3>
+  <ul class="patrocinar-lista">
+    <li><strong>Sem custo direto para a empresa —</strong> o apoio acontece usando parte do imposto que a empresa já pagaria, sem mexer no dinheiro do caixa.</li>
+    <li><strong>Apoio à cultura e à comunidade —</strong> o projeto leva música, arte e experiências culturais para o público, gerando impacto social real.</li>
+    <li><strong>Valorização da marca —</strong> a empresa passa a ser vista como apoiadora da cultura e de iniciativas que fazem a diferença.</li>
+    <li><strong>Divulgação institucional —</strong> a marca aparece de forma positiva em ações culturais, materiais de divulgação e comunicação do projeto.</li>
+  </ul>
+  <div class="botao-patrocinar"><a id="abrirContato">Quero apoiar este projeto</a></div>
+
+  <!-- CONTATO -->
+  <div id="contato" class="contato-box" style="display:none;">
+    <p>Entre em contato:</p>
+    <div class="contato-links">
+      <span id="abrirWhats" title="WhatsApp"><i class="fab fa-whatsapp"></i></span>
+      <span id="abrirEmail" title="E-mail"><i class="fas fa-envelope"></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <p class="footer-title">© 2026 • Oscar Rafael</p>
+  </div>
+</footer>
+
+<script>
+/* SLIDER */
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
+let index = 0;
+function updateSlider() {
+  const slideWidth = images[0].clientWidth;
+  slides.style.transform = `translateX(-${index * slideWidth}px)`;
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === images.length - 1;
+  prevBtn.style.opacity = prevBtn.disabled ? "0.4" : "1";
+  nextBtn.style.opacity = nextBtn.disabled ? "0.4" : "1";
+}
+nextBtn.addEventListener("click", () => { if(index < images.length - 1){ index++; updateSlider(); } });
+prevBtn.addEventListener("click", () => { if(index > 0){ index--; updateSlider(); } });
+window.addEventListener("load", updateSlider);
+window.addEventListener("resize", updateSlider);
+
+/* CONTATO */
+document.getElementById("abrirContato").addEventListener("click", function(e){
+  e.preventDefault();
+  document.querySelector(".botao-patrocinar").style.display = "none";
+  document.getElementById("contato").style.display = "block";
+});
+document.getElementById("abrirWhats").addEventListener("click", function(){
+  window.open("https://wa.me/5541999950185?text=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
+});
+document.getElementById("abrirEmail").addEventListener("click", function(){
+  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=oscardalpizzol@gmail.com&su=Quero%20apoiar%20seu%20projeto&body=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
+});
+</script>
+
+</body>
+</html>
