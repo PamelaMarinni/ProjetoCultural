@@ -220,6 +220,57 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 }
 
+/* ESCONDE O MODAL NO DESKTOP */
+@media (min-width: 769px) {
+  .zoom-modal {
+    display: none !important;
+  }
+}
+
+/* CONFIGURA O MODAL NO CELULAR */
+@media (max-width: 768px) {
+  .zoom-modal {
+    display: none; /* ele só vai abrir via JS quando clicar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .zoom-img {
+    max-width: 90%;
+    max-height: 80%;
+    object-fit: contain;
+  }
+
+  .zoom-prev,
+  .zoom-next,
+  .close {
+    position: absolute;
+    background: #0F2A44;
+    color: #FFD700;
+    border: none;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+
+  .close {
+    top: 10px;
+    right: 10px;
+  }
+
+  .zoom-prev { left: 10px; top: 50%; transform: translateY(-50%); }
+  .zoom-next { right: 10px; top: 50%; transform: translateY(-50%); }
+}
+
+
 </style>
 </head>
 <body>
@@ -282,6 +333,14 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
     </div>
     <button class="next">&#10095;</button>
   </div>
+
+  <!-- Modal de Zoom dos Slides -->
+<div id="zoomModal" class="zoom-modal">
+  <span class="close">&times;</span>
+  <button class="zoom-prev">&#10094;</button>
+  <img class="zoom-img" src="" alt="Slide Zoom">
+  <button class="zoom-next">&#10095;</button>
+</div>
 
   <!-- PDF -->
   <div class="pdf-button">
@@ -347,6 +406,46 @@ document.getElementById("abrirWhats").addEventListener("click", function(){
 document.getElementById("abrirEmail").addEventListener("click", function(){
   window.open("https://mail.google.com/mail/?view=cm&fs=1&to=oscardalpizzol@gmail.com&su=Quero%20apoiar%20seu%20projeto&body=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
 });
+
+
+// só roda no celular
+if(window.innerWidth <= 768){
+  const zoomModal = document.getElementById("zoomModal");
+  const zoomImg = document.querySelector(".zoom-img");
+  const closeBtn = document.querySelector(".close");
+  const zoomPrev = document.querySelector(".zoom-prev");
+  const zoomNext = document.querySelector(".zoom-next");
+
+  const slides = document.querySelectorAll(".slides img");
+  let currentIndex = 0;
+
+  slides.forEach((img, i) => {
+    img.addEventListener("click", () => {
+      zoomModal.style.display = "flex";
+      zoomImg.src = img.src;
+      currentIndex = i;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    zoomModal.style.display = "none";
+  });
+
+  zoomPrev.addEventListener("click", () => {
+    if(currentIndex > 0){
+      currentIndex--;
+      zoomImg.src = slides[currentIndex].src;
+    }
+  });
+
+  zoomNext.addEventListener("click", () => {
+    if(currentIndex < slides.length - 1){
+      currentIndex++;
+      zoomImg.src = slides[currentIndex].src;
+    }
+  });
+}
+
 </script>
 
 </body>
