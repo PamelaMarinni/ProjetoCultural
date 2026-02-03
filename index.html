@@ -333,6 +333,20 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 }
 
+
+@media (max-width: 768px) {
+  .slider-wrapper {
+    max-width: 90%;   /* limita a largura do slider */
+    margin: 0 auto;   /* centraliza */
+  }
+
+  .slider .slides img {
+    width: 100%;      /* imagem ocupa o slider, proporcional */
+    height: auto;
+    object-fit: cover; /* mantém proporção */
+  }
+}
+
 </style>
 </head>
 <body>
