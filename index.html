@@ -270,6 +270,37 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   .zoom-next { right: 10px; top: 50%; transform: translateY(-50%); }
 }
 
+/* Flechas discretas para modal mobile */
+.zoom-prev,
+.zoom-next {
+  font-size: 28px;          /* menor */
+  color: #fff;              /* branco sobre a imagem */
+  background: transparent;  /* sem quadrado */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.zoom-prev:hover,
+.zoom-next:hover {
+  opacity: 1;
+}
+
+.mobile-zoom-hint {
+  display: none; /* padrão desktop */
+  text-align: center;
+  color: #FFD700;
+  font-weight: 600;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .mobile-zoom-hint {
+    display: block; /* só aparece no celular */
+  }
+}
 
 </style>
 </head>
@@ -333,6 +364,10 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
     </div>
     <button class="next">&#10095;</button>
   </div>
+
+
+  <!-- Dica de toque para ampliar (apenas mobile) -->
+<div class="mobile-zoom-hint">🔍 Toque na imagem para ampliar</div>
 
   <!-- Modal de Zoom dos Slides -->
 <div id="zoomModal" class="zoom-modal">
