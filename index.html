@@ -57,8 +57,39 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 /* ===== PROJETO CULTURAL ===== */
 .section .slider-wrapper { max-width: 1300px; display: flex; align-items: center; justify-content: center; gap: 20px; margin: 40px auto; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
-.slider-wrapper button { width: 52px; height: 52px; background: #0F2A44; color: #FFD700; border: 2px solid #FFD700; border-radius: 10px; font-size: 26px; cursor: pointer; transition: transform 0.2s ease; }
-.slider-wrapper button:hover { transform: scale(1.1); }
+/* Garante que o wrapper seja referência para as setas */
+.slider-wrapper {
+  position: relative;
+}
+
+/* Flechas discretas do slider */
+.slider-wrapper .prev,
+.slider-wrapper .next {
+  position: absolute;           /* absoluto relativo ao wrapper */
+  top: 50%;                     /* centraliza vertical */
+  transform: translateY(-50%);
+  font-size: 36px;              /* tamanho da flecha */
+  color: #0F2A44;               /* azul escuro */
+  text-shadow: 0 0 8px #FFD700; /* brilho amarelo */
+  background: transparent;       /* sem fundo */
+  border: none;                  /* sem borda */
+  padding: 8px;                  /* área clicável */
+  cursor: pointer;
+  z-index: 10;
+  display: flex;                 /* garante que aparece */
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-wrapper .prev { left: 5px; }
+.slider-wrapper .next { right: 5px; }
+
+.slider-wrapper .prev:hover,
+.slider-wrapper .next:hover {
+  color: #FFD700;               /* amarelo ao hover */
+  text-shadow: 0 0 12px #FFD700; /* brilho maior */
+}
+
 
 .slider { width: 100%; max-width: 1200px; overflow: hidden; }
 .slides { display: flex; transition: transform 0.5s ease-in-out; }
