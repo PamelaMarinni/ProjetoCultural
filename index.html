@@ -198,79 +198,62 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 
 
-/* VISUALIZADOR ESTILO PDF — MOBILE */
-.mobile-viewer {
+/* ===== VISUALIZAÇÃO TIPO PDF (MOBILE) ===== */
+.image-viewer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: #111;
   z-index: 9999;
-  justify-content: center;
-  align-items: center;
+  overflow-y: auto; /* permite rolagem */
 }
 
-.mobile-viewer img {
-  max-width: 92%;
-  max-height: 85%;
-  object-fit: contain;
+.viewer-content {
+  padding: 60px 16px 24px;
+}
+
+.viewer-content img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 6px;
 }
 
 /* botão fechar */
 .viewer-close {
-  position: absolute;
+  position: fixed;
   top: 16px;
   right: 16px;
-  background: transparent;
+  background: none;
   border: none;
   font-size: 28px;
   color: #FFD700;
   cursor: pointer;
+  z-index: 10000;
 }
 
-/* setas */
-.viewer-prev,
-.viewer-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  font-size: 36px;
-  color: #FFD700;
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.viewer-prev { left: 12px; }
-.viewer-next { right: 12px; }
-
-.viewer-prev:hover,
-.viewer-next:hover {
-  opacity: 1;
-}
-
-/* desktop nunca vê */
-@media (min-width: 769px) {
-  .mobile-viewer {
-    display: none !important;
-  }
-}
-
-
+/* dica só no celular */
 .mobile-zoom-hint {
-  display: none; /* padrão desktop */
+  display: none;
   text-align: center;
   color: #FFD700;
   font-weight: 600;
-  margin-top: 6px;
-  font-size: 14px;
+  margin-top: 8px;
 }
 
 @media (max-width: 768px) {
   .mobile-zoom-hint {
-    display: block; /* só aparece no celular */
+    display: block;
   }
 }
+
+/* desktop nunca vê */
+@media (min-width: 769px) {
+  .image-viewer {
+    display: none !important;
+  }
+}
+
 
 </style>
 </head>
@@ -417,42 +400,29 @@ document.getElementById("abrirEmail").addEventListener("click", function(){
 
 if (window.innerWidth <= 768) {
   const openBtn = document.getElementById("openViewer");
-  const viewer = document.getElementById("mobileViewer");
-  const viewerImg = document.getElementById("viewerImg");
+  const viewer = document.getElementById("imageViewer");
+  const viewerContent = document.querySelector(".viewer-content");
   const closeBtn = document.querySelector(".viewer-close");
-  const viewerPrev = document.querySelector(".viewer-prev");
-  const viewerNext = document.querySelector(".viewer-next");
 
-  const slideImages = document.querySelectorAll(".slides img");
-  let currentIndex = index; // começa no slide atual do slider
+  const slides = document.querySelectorAll(".slides img");
 
-  if (openBtn) {
-    openBtn.addEventListener("click", () => {
-      currentIndex = index; // sincroniza com o slider
-      viewer.style.display = "flex";
-      viewerImg.src = slideImages[currentIndex].src;
+  openBtn.addEventListener("click", () => {
+    viewerContent.innerHTML = "";
+
+    slides.forEach(img => {
+      const clone = img.cloneNode(true);
+      viewerContent.appendChild(clone);
     });
-  }
+
+    viewer.style.display = "block";
+    document.body.style.overflow = "hidden";
+  });
 
   closeBtn.addEventListener("click", () => {
     viewer.style.display = "none";
-  });
-
-  viewerPrev.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      viewerImg.src = slideImages[currentIndex].src;
-    }
-  });
-
-  viewerNext.addEventListener("click", () => {
-    if (currentIndex < slideImages.length - 1) {
-      currentIndex++;
-      viewerImg.src = slideImages[currentIndex].src;
-    }
+    document.body.style.overflow = "";
   });
 }
-
 
 </script>
 
