@@ -196,6 +196,25 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 .footer-title { color: #FFD700; font-size: 16px; font-weight: 600; }
 
 
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .hero-text h1 { font-size: 30px; }
+  .hero-text p { font-size: 16px; }
+  
+  /* Faz o menu ficar vertical */
+  .hero-menu {
+    flex-direction: column;  /* itens em coluna */
+    gap: 10px;               /* espaço entre os links */
+    align-items: center;      /* centraliza horizontalmente */
+  }
+  
+  .hero-menu a { 
+    padding: 10px 24px; 
+    font-size: 14px; 
+    width: 80%;               /* opcional, deixa os botões mais largos e alinhados */
+    text-align: center;
+  }
+}
 
 
 /* ===== VISUALIZAÇÃO TIPO PDF (MOBILE) ===== */
@@ -214,8 +233,9 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 .viewer-content img {
   width: 100%;
-  height: auto;
-  margin-bottom: 16px;
+  height: auto;        /* mantém proporção natural */
+  object-fit: contain;
+  margin-bottom: 4px;  /* bem próximo, quase sem espaço */
   border-radius: 6px;
 }
 
