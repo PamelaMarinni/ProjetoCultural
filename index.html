@@ -148,45 +148,63 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 .descricao-projeto { color: #000; font-size: 20px; text-align: center; margin-bottom: 30px; }
 
 /* ===== CONTATO ===== */
-.contato-links { 
-  display: flex; 
-  justify-content: center; 
-  gap: 30px;       /* antes era 50px, agora menor */
-  margin-top: 20px; 
+/* CONTATO - ajustes gerais */
+.contato-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* menos espaço entre ícones */
+  margin-top: 15px;
 }
 
-.contato-links span { 
-  font-size: 36px;  /* antes 50px, agora menor */
-  color: #0F2A44; 
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  animation: pulseGlow 2s infinite; 
+.contato-links span {
+  font-size: 28px; /* tamanho menor dos ícones */
+  color: #0F2A44;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: pulseGlow 2s infinite;
 }
 
-.contato-links span:hover { 
-  color: #FFD700; 
-  transform: scale(1.3); 
+.contato-links span:hover {
+  color: #FFD700;
+  transform: scale(1.2); /* leve aumento no hover */
 }
 
-@keyframes pulseGlow { 
-  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
-  50% { text-shadow: 0 0 20px #FFD700; transform: scale(1.2); } 
-  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+.contato-box p {
+  font-size: 24px; /* texto menor */
+  font-weight: 700;
+  color: #0F2A44;
+  margin: 30px 0 15px 0; /* menos margem */
+  text-align: center;
+  animation: pulseText 2s infinite;
 }
 
-.contato-box p { 
-  font-size: 32px; 
-  font-weight: 700; 
-  color: #0F2A44; 
-  margin: 40px 0 25px 0; 
-  text-align: center; 
-  animation: pulseText 2s infinite; 
+/* animações reaproveitadas */
+@keyframes pulseGlow {
+  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
+  50% { text-shadow: 0 0 15px #FFD700; transform: scale(1.2); }
+  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
 }
 
-@keyframes pulseText { 
-  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
-  50% { text-shadow: 0 0 20px #FFD700; transform: scale(1.1); } 
-  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); } 
+@keyframes pulseText {
+  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
+  50% { text-shadow: 0 0 15px #FFD700; transform: scale(1.1); }
+  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
+}
+
+/* AJUSTES MOBILE */
+@media (max-width: 768px) {
+  .contato-links {
+    gap: 12px; /* ainda mais perto no celular */
+  }
+
+  .contato-links span {
+    font-size: 22px; /* ícones menores no celular */
+  }
+
+  .contato-box p {
+    font-size: 20px; /* texto menor no celular */
+    margin: 20px 0 10px 0;
+  }
 }
 
 
