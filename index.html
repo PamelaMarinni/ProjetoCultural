@@ -148,62 +148,73 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 .descricao-projeto { color: #000; font-size: 20px; text-align: center; margin-bottom: 30px; }
 
 /* ===== CONTATO ===== */
-/* CONTATO - ajustes gerais */
-.contato-links {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* menos espaço entre ícones */
-  margin-top: 15px;
+/* ===== CONTATO - AJUSTADO ===== */
+.contato-links { 
+  display: flex; 
+  justify-content: center; 
+  gap: 20px;       /* mais espaço entre ícones */
+  margin-top: 20px; 
 }
 
-.contato-links span {
-  font-size: 28px; /* tamanho menor dos ícones */
+.contato-links span { 
+  font-size: 24px;  /* ícones maiores e legíveis */
+  color: #0F2A44; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  animation: pulseGlow 2s infinite; 
+}
+
+.contato-links span:hover { 
+  color: #FFD700; 
+  transform: scale(1.2); 
+}
+
+.contato-links span:active {
   color: #0F2A44;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  animation: pulseGlow 2s infinite;
+  transform: none;
+  outline: none;
 }
 
-.contato-links span:hover {
-  color: #FFD700;
-  transform: scale(1.2); /* leve aumento no hover */
+@keyframes pulseGlow { 
+  0% { text-shadow: 0 0 3px #FFD700; transform: scale(1); } 
+  50% { text-shadow: 0 0 10px #FFD700; transform: scale(1.1); } 
+  100% { text-shadow: 0 0 3px #FFD700; transform: scale(1); } 
 }
 
-.contato-box p {
-  font-size: 24px; /* texto menor */
-  font-weight: 700;
-  color: #0F2A44;
-  margin: 30px 0 15px 0; /* menos margem */
-  text-align: center;
-  animation: pulseText 2s infinite;
+.contato-box p { 
+  font-size: 22px;  /* título maior */
+  font-weight: 700; 
+  color: #0F2A44; 
+  margin: 20px 0 15px 0; 
+  text-align: center; 
+  animation: pulseText 2s infinite; 
 }
 
-/* animações reaproveitadas */
-@keyframes pulseGlow {
-  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
-  50% { text-shadow: 0 0 15px #FFD700; transform: scale(1.2); }
-  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
+@keyframes pulseText { 
+  0% { text-shadow: 0 0 3px #FFD700; transform: scale(1); } 
+  50% { text-shadow: 0 0 10px #FFD700; transform: scale(1.05); } 
+  100% { text-shadow: 0 0 3px #FFD700; transform: scale(1); } 
 }
 
-@keyframes pulseText {
-  0% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
-  50% { text-shadow: 0 0 15px #FFD700; transform: scale(1.1); }
-  100% { text-shadow: 0 0 5px #FFD700; transform: scale(1); }
-}
-
-/* AJUSTES MOBILE */
+/* ===== AJUSTES MOBILE ===== */
 @media (max-width: 768px) {
   .contato-links {
-    gap: 12px; /* ainda mais perto no celular */
+    gap: 16px;           /* espaço ajustado no celular */
   }
 
   .contato-links span {
-    font-size: 22px; /* ícones menores no celular */
+    font-size: 20px;    /* ícones mais visíveis no celular */
   }
 
   .contato-box p {
-    font-size: 20px; /* texto menor no celular */
-    margin: 20px 0 10px 0;
+    font-size: 18px;    /* título legível no celular */
+    margin: 12px 0 10px 0;
+  }
+
+  .contato-links span:active {
+    color: #0F2A44;
+    transform: none;
+    outline: none;
   }
 }
 
