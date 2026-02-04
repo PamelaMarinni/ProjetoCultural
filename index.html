@@ -293,31 +293,6 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 }
 
 
-.mobile-slide-hint {
-  display: none;        /* padrão: escondido */
-  text-align: center;
-  color: #FFD700;
-  font-weight: 600;
-  margin-top: 10px;     /* distância do slider */
-  font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  .mobile-slide-hint {
-    display: block;
-  }
-}
-
-
-@media (max-width: 768px) {
-  .mobile-zoom-hint {
-    margin-top: 8px;  /* diminui o espaço acima */
-    margin-bottom: 16px; /* deixa um espacinho abaixo */
-    text-align: center;
-  }
-}
-
-
 </style>
 </head>
 <body>
@@ -360,32 +335,26 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   <p style="text-align:center; color:#000; margin-bottom:30px;">O Som da Felicidade (PRONAC 257865) — projeto aprovado pela Lei Rouanet.</p>
 
   <!-- SLIDER -->
-<div class="slider-wrapper">
-  <button class="prev">&#10094;</button>
-  <div class="slider">
-    <div class="slides">
-      <img src="imagem/img1.jpg" alt="Slide 1">
-      <img src="imagem/img2.jpg" alt="Slide 2">
-      <img src="imagem/img3.jpg" alt="Slide 3">
-      <img src="imagem/img4.jpg" alt="Slide 4">
-      <img src="imagem/img5.jpg" alt="Slide 5">
-      <img src="imagem/img6.jpg" alt="Slide 6">
-      <img src="imagem/img7.jpg" alt="Slide 7">
-      <img src="imagem/img8.jpg" alt="Slide 8">
-      <img src="imagem/img9.jpg" alt="Slide 9">
-      <img src="imagem/img10.jpg" alt="Slide 10">
-      <img src="imagem/img11.jpg" alt="Slide 11">
-      <img src="imagem/img12.jpg" alt="Slide 12">
+  <div class="slider-wrapper">
+    <button class="prev">&#10094;</button>
+    <div class="slider">
+      <div class="slides">
+        <img src="imagem/img1.jpg" alt="Slide 1">
+        <img src="imagem/img2.jpg" alt="Slide 2">
+        <img src="imagem/img3.jpg" alt="Slide 3">
+        <img src="imagem/img4.jpg" alt="Slide 4">
+        <img src="imagem/img5.jpg" alt="Slide 5">
+        <img src="imagem/img6.jpg" alt="Slide 6">
+        <img src="imagem/img7.jpg" alt="Slide 7">
+        <img src="imagem/img8.jpg" alt="Slide 8">
+        <img src="imagem/img9.jpg" alt="Slide 9">
+        <img src="imagem/img10.jpg" alt="Slide 10">
+        <img src="imagem/img11.jpg" alt="Slide 11">
+        <img src="imagem/img12.jpg" alt="Slide 12">
+      </div>
     </div>
+    <button class="next">&#10095;</button>
   </div>
-  <button class="next">&#10095;</button>
-
-  <!-- DICA MOBILE -->
-  <div class="mobile-slide-hint">
-    🔍 Toque aqui e amplie a imagem
-  </div>
-</div>
-
 
 
 <!-- VISUALIZAÇÃO TIPO PDF (MOBILE) -->
@@ -395,7 +364,9 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 </div>
 
 
-
+<div id="openViewer" class="mobile-zoom-hint">
+  🔍 Toque aqui e amplie a imagem
+</div>
 
 
 
