@@ -270,6 +270,29 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 }
 
+
+/* ===== SLIDER MOBILE SÓ AS SETAS ===== */
+@media (max-width: 768px) {
+  .slider-wrapper button {
+    width: auto;          /* mantém tamanho natural da seta */
+    height: auto;
+    font-size: 30px;      /* tamanho da seta */
+    background: none;     /* sem fundo */
+    border: none;         /* sem borda */
+    color: #0F2A44;       /* azul */
+    text-shadow: 0 0 5px #FFD700; /* leve brilho amarelo */
+    cursor: pointer;
+    padding: 5px 10px;    /* leve espaçamento em volta */
+  }
+  
+  /* opcional: muda efeito ao passar o dedo */
+  .slider-wrapper button:hover {
+    text-shadow: 0 0 10px #FFD700;
+    transform: scale(1.1);
+  }
+}
+
+
 </style>
 </head>
 <body>
