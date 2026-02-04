@@ -292,13 +292,22 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 }
 
-.mobile-zoom-hint {
-  display: block;
+
+.mobile-slide-hint {
+  display: none;        /* padrão: escondido */
   text-align: center;
   color: #FFD700;
   font-weight: 600;
-  margin-top: 8px; /* diminua esse valor para ficar mais próximo */
+  margin-top: 10px;     /* distância do slider */
+  font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .mobile-slide-hint {
+    display: block;
+  }
+}
+
 
 </style>
 </head>
@@ -341,10 +350,9 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   <h2 class="pulsando" style="text-align:center; color:#0F2A44;">PROJETO CULTURAL</h2>
   <p style="text-align:center; color:#000; margin-bottom:30px;">O Som da Felicidade (PRONAC 257865) — projeto aprovado pela Lei Rouanet.</p>
 
-<!-- SLIDER -->
+  <!-- SLIDER -->
 <div class="slider-wrapper">
   <button class="prev">&#10094;</button>
-  
   <div class="slider">
     <div class="slides">
       <img src="imagem/img1.jpg" alt="Slide 1">
@@ -361,14 +369,14 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
       <img src="imagem/img12.jpg" alt="Slide 12">
     </div>
   </div>
-  
   <button class="next">&#10095;</button>
 
-  <!-- Dica de toque (mobile) -->
-  <div id="openViewer" class="mobile-zoom-hint">
+  <!-- DICA MOBILE -->
+  <div class="mobile-slide-hint">
     🔍 Toque aqui e amplie a imagem
   </div>
 </div>
+
 
 
 <!-- VISUALIZAÇÃO TIPO PDF (MOBILE) -->
