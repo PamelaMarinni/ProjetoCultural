@@ -218,25 +218,19 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 
 /* ===== VISUALIZAÇÃO TIPO PDF (MOBILE) ===== */
-.image-viewer {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: #111;
-  z-index: 9999;
-  overflow-y: auto; /* permite rolagem */
-}
-
 .viewer-content {
-  padding: 60px 16px 24px;
+  padding: 16px; /* pouco padding, suficiente para não grudar na tela */
+  display: flex;
+  flex-direction: column; /* vertical */
 }
 
 .viewer-content img {
   width: 100%;
-  height: auto;        /* mantém proporção natural */
+  height: auto;
   object-fit: contain;
-  margin-bottom: 4px;  /* bem próximo, quase sem espaço */
+  margin: 0;          /* remove espaço entre imagens */
   border-radius: 6px;
+  display: block;     /* evita gaps invisíveis */
 }
 
 /* botão fechar */
