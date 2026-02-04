@@ -469,9 +469,18 @@ document.getElementById("abrirContato").addEventListener("click", function(e){
 document.getElementById("abrirWhats").addEventListener("click", function(){
   window.open("https://wa.me/5541999950185?text=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
 });
+
 document.getElementById("abrirEmail").addEventListener("click", function(){
-  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=oscardalpizzol@gmail.com&su=Quero%20apoiar%20seu%20projeto&body=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    // Mobile: abre o app de e-mail
+    window.location.href = "mailto:oscardalpizzol@gmail.com?subject=Quero%20apoiar%20seu%20projeto&body=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.";
+  } else {
+    // Desktop: abre Gmail web
+    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=oscardalpizzol@gmail.com&su=Quero%20apoiar%20seu%20projeto&body=Olá%20Oscar,%20quero%20saber%20mais%20sobre%20seu%20projeto%20cultural.", "_blank");
+  }
 });
+
+
 
 
 if (window.innerWidth <= 768) {
