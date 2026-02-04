@@ -212,6 +212,12 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   padding: 60px 16px 24px;
 }
 
+.viewer-content img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 6px;
+}
 
 /* botão fechar */
 .viewer-close {
@@ -248,17 +254,12 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 }
 
-.viewer-content img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 24px;
-  border-radius: 6px;
-}
-
 @media (max-width: 768px) {
   .viewer-content img {
-    height: 90vh;
-    object-fit: contain;
+    width: 100%;
+    height: 90vh;          /* quase a tela toda */
+    object-fit: contain;  /* não corta o conteúdo */
+    margin-bottom: 24px;
   }
 }
 
