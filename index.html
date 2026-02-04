@@ -274,22 +274,30 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 /* botão fechar */
 .viewer-close {
-  position: fixed;        /* sempre visível */
+  position: fixed;
   top: 16px;
   right: 16px;
-  background: #0F2A44;    /* azul escuro */
-  color: #FFD700;          /* amarelo brilhante */
+  width: 40px;           /* menor que antes */
+  height: 40px;          /* menor que antes */
+  background: rgba(15, 42, 68, 0.7); /* azul escuro semi-transparente */
+  backdrop-filter: blur(4px);       /* efeito desfocado */
   border: none;
-  border-radius: 50%;      /* circular */
-  width: 44px;             /* tamanho do círculo */
-  height: 44px;
-  font-size: 28px;
-  font-weight: bold;
+  border-radius: 50%;    /* deixa circular */
+  color: #FFD700;        /* ícone amarelo */
+  font-size: 24px;       /* ajusta tamanho do X */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 10000;
-  box-shadow: 0 0 8px #FFD700, 0 0 16px #FFD700;  /* brilho */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s ease;
 }
+
+.viewer-close:hover {
+  transform: scale(1.2);
+  background: rgba(15, 42, 68, 0.85); /* mais visível ao passar o mouse */
+}
+
 
 .viewer-close:hover {
   transform: scale(1.1);
