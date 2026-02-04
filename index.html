@@ -229,20 +229,21 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   }
 
   .viewer-content {
-    display: flex;
-    flex-direction: column; /* imagens em coluna */
-    padding: 8px;           /* pequeno padding nas laterais */
-    gap: 0;                 /* sem espaço entre imagens */
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px; /* espaço pequeno entre imagens */
+}
 
-  .viewer-content img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin: 0;              /* remove qualquer espaçamento */
-    border-radius: 6px;
-    display: block;
-  }
+.viewer-content img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0; 
+  border-radius: 6px;
+  display: block;
+}
+
 
   .viewer-close {
     position: fixed;
