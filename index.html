@@ -336,17 +336,15 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   </div>
 
 
- <!-- Dica de toque (apenas mobile) -->
-<div class="mobile-zoom-hint" id="openViewer">
-  🔍 Toque na imagem para ampliar
-</div>
-
-<!-- Visualizador estilo PDF (mobile) -->
 <div id="mobileViewer" class="mobile-viewer">
   <button class="viewer-close">✕</button>
   <button class="viewer-prev">‹</button>
-  <img id="viewerImg" src="" alt="Visualização ampliada">
+  <img id="viewerImg" src="" alt="">
   <button class="viewer-next">›</button>
+</div>
+
+<div id="openViewer" class="mobile-zoom-hint">
+  🔍 Toque na imagem para ampliar
 </div>
 
 
@@ -422,32 +420,35 @@ if (window.innerWidth <= 768) {
   const viewer = document.getElementById("mobileViewer");
   const viewerImg = document.getElementById("viewerImg");
   const closeBtn = document.querySelector(".viewer-close");
-  const prevBtn = document.querySelector(".viewer-prev");
-  const nextBtn = document.querySelector(".viewer-next");
+  const viewerPrev = document.querySelector(".viewer-prev");
+  const viewerNext = document.querySelector(".viewer-next");
 
-  const slides = document.querySelectorAll(".slides img");
-  let currentIndex = 0;
+  const slideImages = document.querySelectorAll(".slides img");
+  let currentIndex = index; // começa no slide atual do slider
 
-  openBtn.addEventListener("click", () => {
-    viewer.style.display = "flex";
-    viewerImg.src = slides[currentIndex].src;
-  });
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      currentIndex = index; // sincroniza com o slider
+      viewer.style.display = "flex";
+      viewerImg.src = slideImages[currentIndex].src;
+    });
+  }
 
   closeBtn.addEventListener("click", () => {
     viewer.style.display = "none";
   });
 
-  prevBtn.addEventListener("click", () => {
+  viewerPrev.addEventListener("click", () => {
     if (currentIndex > 0) {
       currentIndex--;
-      viewerImg.src = slides[currentIndex].src;
+      viewerImg.src = slideImages[currentIndex].src;
     }
   });
 
-  nextBtn.addEventListener("click", () => {
-    if (currentIndex < slides.length - 1) {
+  viewerNext.addEventListener("click", () => {
+    if (currentIndex < slideImages.length - 1) {
       currentIndex++;
-      viewerImg.src = slides[currentIndex].src;
+      viewerImg.src = slideImages[currentIndex].src;
     }
   });
 }
