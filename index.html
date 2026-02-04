@@ -198,25 +198,23 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 /* ===== RESPONSIVO ===== */
 @media (max-width: 768px) {
-  .hero-text {
-    top: 50%;                  /* centraliza verticalmente */
-    transform: translateY(-50%);
-  }
-
+  .hero-text h1 { font-size: 30px; }
+  .hero-text p { font-size: 16px; }
+  
+  /* Faz o menu ficar vertical */
   .hero-menu {
-    flex-direction: column;    /* mantém vertical */
-    gap: 16px;                 /* aumenta espaço entre os botões */
-    align-items: center;       /* centraliza horizontalmente */
+    flex-direction: column;  /* itens em coluna */
+    gap: 10px;               /* espaço entre os links */
+    align-items: center;      /* centraliza horizontalmente */
   }
-
+  
   .hero-menu a { 
-    padding: 12px 28px;        /* um pouco mais de padding para ficar proporcional */
+    padding: 10px 24px; 
     font-size: 14px; 
-    width: 80%;                /* mantém largura */
+    width: 80%;               /* opcional, deixa os botões mais largos e alinhados */
     text-align: center;
   }
 }
-
 
 
 /* ===== VISUALIZAÇÃO TIPO PDF (MOBILE) ===== */
@@ -298,17 +296,16 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 @media (max-width: 768px) {
   .pdf-button a {
-    padding: 4px 10px;   /* mais compacto */
-    font-size: 12px;     /* fonte menor */
+    padding: 6px 12px;   /* menor que o normal */
+    font-size: 14px;     /* diminui a fonte */
   }
 }
-
 
 </style>
 </head>
 <body>
 
-!-- HERO -->
+<!-- HERO -->
 <header class="hero">
   <img src="imagem/hero.jpg" alt="Imagem de fundo" class="hero-img">
   <div class="hero-text">
@@ -320,7 +317,7 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
       <a href="#projeto">PROJETO CULTURAL</a>
     </nav>
   </div>
-</header><
+</header>
 
 <!-- SOBRE MIM -->
 <section id="sobre" class="section">
