@@ -198,94 +198,64 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 
 
-/* ===== HERO RESPONSIVO mobile ===== */
-@media (max-width: 768px) {
-  .hero-text h1 {
-    font-size: 32px;  /* diminui título no celular */
-  }
-
-  .hero-text p {
-    font-size: 16px;  /* diminui subtítulo no celular */
-  }
-
-  .hero-menu {
-    flex-direction: column;  /* empilha os botões */
-    gap: 10px;               /* espaço entre eles */
-    align-items: center;     /* centraliza horizontalmente */
-  }
-
-  .hero-menu a {
-    padding: 10px 24px;      /* deixa os botões menores e mais proporcionais */
-    font-size: 14px;          /* fonte menor no celular */
-  }
+/* VISUALIZADOR ESTILO PDF — MOBILE */
+.mobile-viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
 }
 
-/* ESCONDE O MODAL NO DESKTOP */
+.mobile-viewer img {
+  max-width: 92%;
+  max-height: 85%;
+  object-fit: contain;
+}
+
+/* botão fechar */
+.viewer-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: #FFD700;
+  cursor: pointer;
+}
+
+/* setas */
+.viewer-prev,
+.viewer-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 36px;
+  color: #FFD700;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.viewer-prev { left: 12px; }
+.viewer-next { right: 12px; }
+
+.viewer-prev:hover,
+.viewer-next:hover {
+  opacity: 1;
+}
+
+/* desktop nunca vê */
 @media (min-width: 769px) {
-  .zoom-modal {
+  .mobile-viewer {
     display: none !important;
   }
 }
 
-/* CONFIGURA O MODAL NO CELULAR */
-@media (max-width: 768px) {
-  .zoom-modal {
-    display: none; /* ele só vai abrir via JS quando clicar */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .zoom-img {
-    max-width: 90%;
-    max-height: 80%;
-    object-fit: contain;
-  }
-
-  .zoom-prev,
-  .zoom-next,
-  .close {
-    position: absolute;
-    background: #0F2A44;
-    color: #FFD700;
-    border: none;
-    padding: 10px 20px;
-    font-size: 24px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-
-  .close {
-    top: 10px;
-    right: 10px;
-  }
-
-  .zoom-prev { left: 10px; top: 50%; transform: translateY(-50%); }
-  .zoom-next { right: 10px; top: 50%; transform: translateY(-50%); }
-}
-
-/* Flechas discretas para modal mobile */
-.zoom-prev,
-.zoom-next {
-  font-size: 28px;          /* menor */
-  color: #fff;              /* branco sobre a imagem */
-  background: transparent;  /* sem quadrado */
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.zoom-prev:hover,
-.zoom-next:hover {
-  opacity: 1;
-}
 
 .mobile-zoom-hint {
   display: none; /* padrão desktop */
@@ -369,12 +339,12 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   <!-- Dica de toque para ampliar (apenas mobile) -->
 <div class="mobile-zoom-hint">🔍 Toque na imagem para ampliar</div>
 
-  <!-- Modal de Zoom dos Slides -->
-<div id="zoomModal" class="zoom-modal">
-  <span class="close">&times;</span>
-  <button class="zoom-prev">&#10094;</button>
-  <img class="zoom-img" src="" alt="Slide Zoom">
-  <button class="zoom-next">&#10095;</button>
+ <!-- Visualizador estilo PDF (apenas mobile) -->
+<div id="mobileViewer" class="mobile-viewer">
+  <button class="viewer-close">✕</button>
+  <button class="viewer-prev">‹</button>
+  <img id="viewerImg" src="" alt="Visualização ampliada">
+  <button class="viewer-next">›</button>
 </div>
 
   <!-- PDF -->
@@ -443,43 +413,48 @@ document.getElementById("abrirEmail").addEventListener("click", function(){
 });
 
 
-// só roda no celular
-if(window.innerWidth <= 768){
-  const zoomModal = document.getElementById("zoomModal");
-  const zoomImg = document.querySelector(".zoom-img");
-  const closeBtn = document.querySelector(".close");
-  const zoomPrev = document.querySelector(".zoom-prev");
-  const zoomNext = document.querySelector(".zoom-next");
+/* VISUALIZADOR ESTILO PDF — APENAS MOBILE */
+if (window.innerWidth <= 768) {
+  const viewer = document.getElementById("mobileViewer");
+  const viewerImg = document.getElementById("viewerImg");
+  const closeBtn = document.querySelector(".viewer-close");
+  const prevBtn = document.querySelector(".viewer-prev");
+  const nextBtn = document.querySelector(".viewer-next");
 
-  const slides = document.querySelectorAll(".slides img");
+  const images = document.querySelectorAll(".slides img");
   let currentIndex = 0;
 
-  slides.forEach((img, i) => {
+  // abre visualizador ao clicar na imagem
+  images.forEach((img, index) => {
     img.addEventListener("click", () => {
-      zoomModal.style.display = "flex";
-      zoomImg.src = img.src;
-      currentIndex = i;
+      viewer.style.display = "flex";
+      viewerImg.src = img.src;
+      currentIndex = index;
     });
   });
 
+  // fechar
   closeBtn.addEventListener("click", () => {
-    zoomModal.style.display = "none";
+    viewer.style.display = "none";
   });
 
-  zoomPrev.addEventListener("click", () => {
-    if(currentIndex > 0){
+  // anterior
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
       currentIndex--;
-      zoomImg.src = slides[currentIndex].src;
+      viewerImg.src = images[currentIndex].src;
     }
   });
 
-  zoomNext.addEventListener("click", () => {
-    if(currentIndex < slides.length - 1){
+  // próximo
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex < images.length - 1) {
       currentIndex++;
-      zoomImg.src = slides[currentIndex].src;
+      viewerImg.src = images[currentIndex].src;
     }
   });
 }
+
 
 </script>
 
