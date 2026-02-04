@@ -218,29 +218,19 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
 
 
 /* ===== VISUALIZAÇÃO TIPO PDF (MOBILE) ===== */
-@media (max-width: 768px) {
-  .viewer-content {
-    padding: 8px;              /* pouco padding */
-    display: flex;
-    flex-direction: column;     /* vertical */
-  }
+.viewer-content {
+  padding: 16px; /* pouco padding, suficiente para não grudar na tela */
+  display: flex;
+  flex-direction: column; /* vertical */
+}
 
-  .viewer-content img {
-    width: 100%;
-    height: auto;               /* mantém proporção natural */
-    object-fit: contain;        /* não corta o conteúdo */
-    margin: 0;                  /* remove espaço entre imagens */
-    border-radius: 6px;
-    display: block;
-  }
-
-  .mobile-zoom-hint {
-    display: block;
-    text-align: center;
-    color: #FFD700;
-    font-weight: 600;
-    margin-top: 8px;
-  }
+.viewer-content img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0;          /* remove espaço entre imagens */
+  border-radius: 6px;
+  display: block;     /* evita gaps invisíveis */
 }
 
 /* botão fechar */
@@ -256,13 +246,27 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   z-index: 10000;
 }
 
+/* dica só no celular */
+.mobile-zoom-hint {
+  display: none;
+  text-align: center;
+  color: #FFD700;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .mobile-zoom-hint {
+    display: block;
+  }
+}
+
 /* desktop nunca vê */
 @media (min-width: 769px) {
   .image-viewer {
     display: none !important;
   }
 }
-
 
 </style>
 </head>
