@@ -336,15 +336,19 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   </div>
 
 
-  <!-- Dica de toque para ampliar (apenas mobile) -->
-<div class="mobile-zoom-hint">🔍 Toque na imagem para ampliar</div>
+ <!-- Dica de toque (apenas mobile) -->
+<div class="mobile-zoom-hint" id="openViewer">
+  🔍 Toque na imagem para ampliar
+</div>
 
+<!-- Visualizador estilo PDF (mobile) -->
 <div id="mobileViewer" class="mobile-viewer">
   <button class="viewer-close">✕</button>
   <button class="viewer-prev">‹</button>
   <img id="viewerImg" src="" alt="Visualização ampliada">
   <button class="viewer-next">›</button>
 </div>
+
 
 
   <!-- PDF -->
@@ -413,50 +417,39 @@ document.getElementById("abrirEmail").addEventListener("click", function(){
 });
 
 
-// Visualizador estilo PDF apenas no celular
 if (window.innerWidth <= 768) {
-  const pdfLink = document.querySelector(".pdf-link");
+  const openBtn = document.getElementById("openViewer");
   const viewer = document.getElementById("mobileViewer");
   const viewerImg = document.getElementById("viewerImg");
   const closeBtn = document.querySelector(".viewer-close");
+  const prevBtn = document.querySelector(".viewer-prev");
+  const nextBtn = document.querySelector(".viewer-next");
 
   const slides = document.querySelectorAll(".slides img");
   let currentIndex = 0;
 
-  if (pdfLink && viewer && viewerImg) {
-    pdfLink.addEventListener("click", function (e) {
-      e.preventDefault(); // NÃO abre nova aba no mobile
-      viewer.style.display = "flex";
-      viewerImg.src = slides[0].src; // abre igual slide
-      currentIndex = 0;
-    });
+  openBtn.addEventListener("click", () => {
+    viewer.style.display = "flex";
+    viewerImg.src = slides[currentIndex].src;
+  });
 
-    slides.forEach((img, i) => {
-      img.addEventListener("click", () => {
-        viewer.style.display = "flex";
-        viewerImg.src = img.src;
-        currentIndex = i;
-      });
-    });
+  closeBtn.addEventListener("click", () => {
+    viewer.style.display = "none";
+  });
 
-    document.querySelector(".viewer-prev").onclick = () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        viewerImg.src = slides[currentIndex].src;
-      }
-    };
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      viewerImg.src = slides[currentIndex].src;
+    }
+  });
 
-    document.querySelector(".viewer-next").onclick = () => {
-      if (currentIndex < slides.length - 1) {
-        currentIndex++;
-        viewerImg.src = slides[currentIndex].src;
-      }
-    };
-
-    closeBtn.onclick = () => {
-      viewer.style.display = "none";
-    };
-  }
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      viewerImg.src = slides[currentIndex].src;
+    }
+  });
 }
 
 
