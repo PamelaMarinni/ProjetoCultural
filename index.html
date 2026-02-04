@@ -336,16 +336,22 @@ body { background: linear-gradient(180deg, #1E3A5F 0%, #A9C4E0 100%); color: #2B
   </div>
 
 
-  <!-- Dica de toque para ampliar (apenas mobile) -->
-<div class="mobile-zoom-hint">🔍 Toque na imagem para ampliar</div>
+<div class="pdf-button">
+  <a href="pdf/projeto-o-som-da-felicidade.pdf"
+     class="pdf-link"
+     target="_blank">
+    Visualizar PDF do Projeto
+  </a>
+</div>
 
- <!-- Visualizador estilo PDF (apenas mobile) -->
+
 <div id="mobileViewer" class="mobile-viewer">
   <button class="viewer-close">✕</button>
   <button class="viewer-prev">‹</button>
   <img id="viewerImg" src="" alt="Visualização ampliada">
   <button class="viewer-next">›</button>
 </div>
+
 
   <!-- PDF -->
   <div class="pdf-button">
@@ -413,46 +419,50 @@ document.getElementById("abrirEmail").addEventListener("click", function(){
 });
 
 
-/* VISUALIZADOR ESTILO PDF — APENAS MOBILE */
+// Visualizador estilo PDF apenas no celular
 if (window.innerWidth <= 768) {
+  const pdfLink = document.querySelector(".pdf-link");
   const viewer = document.getElementById("mobileViewer");
   const viewerImg = document.getElementById("viewerImg");
   const closeBtn = document.querySelector(".viewer-close");
-  const prevBtn = document.querySelector(".viewer-prev");
-  const nextBtn = document.querySelector(".viewer-next");
 
-  const images = document.querySelectorAll(".slides img");
+  const slides = document.querySelectorAll(".slides img");
   let currentIndex = 0;
 
-  // abre visualizador ao clicar na imagem
-  images.forEach((img, index) => {
-    img.addEventListener("click", () => {
+  if (pdfLink && viewer && viewerImg) {
+    pdfLink.addEventListener("click", function (e) {
+      e.preventDefault(); // NÃO abre nova aba no mobile
       viewer.style.display = "flex";
-      viewerImg.src = img.src;
-      currentIndex = index;
+      viewerImg.src = slides[0].src; // abre igual slide
+      currentIndex = 0;
     });
-  });
 
-  // fechar
-  closeBtn.addEventListener("click", () => {
-    viewer.style.display = "none";
-  });
+    slides.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        viewer.style.display = "flex";
+        viewerImg.src = img.src;
+        currentIndex = i;
+      });
+    });
 
-  // anterior
-  prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      viewerImg.src = images[currentIndex].src;
-    }
-  });
+    document.querySelector(".viewer-prev").onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        viewerImg.src = slides[currentIndex].src;
+      }
+    };
 
-  // próximo
-  nextBtn.addEventListener("click", () => {
-    if (currentIndex < images.length - 1) {
-      currentIndex++;
-      viewerImg.src = images[currentIndex].src;
-    }
-  });
+    document.querySelector(".viewer-next").onclick = () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        viewerImg.src = slides[currentIndex].src;
+      }
+    };
+
+    closeBtn.onclick = () => {
+      viewer.style.display = "none";
+    };
+  }
 }
 
 
